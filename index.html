@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <div class="expression" id="expression"></div>
+            <div class="result" id="result">0</div>
+        </div>
+        <div class="keypad">
+            <button class="btn btn-utility" id="btn-clear">C</button>
+            <button class="btn btn-utility" id="btn-sign">+/-</button>
+            <button class="btn btn-utility" id="btn-percent">%</button>
+            <button class="btn btn-operator" data-op="/">÷</button>
+
+            <button class="btn btn-digit" data-digit="7">7</button>
+            <button class="btn btn-digit" data-digit="8">8</button>
+            <button class="btn btn-digit" data-digit="9">9</button>
+            <button class="btn btn-operator" data-op="*">×</button>
+
+            <button class="btn btn-digit" data-digit="4">4</button>
+            <button class="btn btn-digit" data-digit="5">5</button>
+            <button class="btn btn-digit" data-digit="6">6</button>
+            <button class="btn btn-operator" data-op="-">−</button>
+
+            <button class="btn btn-digit" data-digit="1">1</button>
+            <button class="btn btn-digit" data-digit="2">2</button>
+            <button class="btn btn-digit" data-digit="3">3</button>
+            <button class="btn btn-operator" data-op="+">+</button>
+
+            <button class="btn btn-digit btn-zero" data-digit="0">0</button>
+            <button class="btn btn-digit" data-digit=".">.</button>
+            <button class="btn btn-equals" id="btn-equals">=</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
