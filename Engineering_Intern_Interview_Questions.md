@@ -349,6 +349,33 @@ Active operator highlight (outlined in the operator's own color)
 Auto-shrinking display font for long numbers
 "
 
+Prompt 2:
+
+"
+lets change the floating point display so it doesnt show unneeded trailing zeroes, and allow for chaining multiple operations using PEMDAS as a ruleset. also standardize the UI. all the function buttons should be the same color, the = button can be different, you can also add some subtle animations.
+"
+
+Response:
+
+"
+Here's what changed across both files:
+
+script.js — Logic overhaul
+
+Replaced the pairwise storedValue/pendingOperator state with a tokens[] array that accumulates the full expression (e.g. [2, '+', 3, '*', 4])
+evaluate() does two passes: first resolves all * and / left-to-right, then resolves + and - — proper PEMDAS
+formatNumber() now uses parseFloat(n.toPrecision(12)).toString(), which inherently strips trailing zeros since parseFloat normalizes them. 0.1 + 0.2 now displays 0.3
+Pressing an operator mid-chain without typing a new number replaces the pending operator instead of evaluating prematurely
+Display's pop class is removed and re-added each update to retrigger the slide-up animation
+styles.css — Visual standardization
+
+Removed all per-operator color selectors ([data-op="/"] etc.)
+All four operator buttons are now a uniform steel blue (#5ba4f5 on #1c2b3a), with an inset border glow when active
+= button is now a muted green (#5fd068 on #2a4a2a) — distinct but not loud
+Added @keyframes popIn — a 6px slide-up + opacity fade on every display update
+Button press uses scale(0.92) with transition on the base class for a consistent, smooth feel across all button types
+"
+
 ------------------------------------------------------------------------
 
 ## Follow-up questions
@@ -369,15 +396,4 @@ Auto-shrinking display font for long numbers
 1. I was able to finish the exercise with a visually pleasing four function calculator.
 2. The only issue was ensuring that the calculator was able to handle division by zero displaying undefined.
 3. If I had unlimited time I would also add the ability to use exponents, square root, specified root, EE (enter exponent) for scientific notation, and other functionality to make the calculator more of a scientific calculator rather than just four function.
-4. All prompt and responses I received from Claude are included above under the Exercise section. I believe that the AI did well with creating exactly what I said, but that is inherintly the issue. It didn't fill in the blanks to create an overall better product, or in this case, calculator. It created a functional basic calculator that can handle four basic functions. The AI was not able to go beyond this scope on its own. It had a few faults with creating the UI. With the first prompt it felt cluttered and almost oversimplified. This is a major fault of all models right now in my opinion. While AI can replicate currently existing web development practices, it struggles to innovate or even be critical of its own design without outside input. I was able to see what it created and immediately see what was wrong with it.
-
-# Delivery
-
-Please reply to the email you received with:
-
-1.  Answers to any follow-up above.
-2.  Any questions or thoughts you had on the exercise.
-3.  A link to a public GitHub repository including your answer to the
-    coding challenge.
-    -   If we can't get to the repository, we won't be able to consider
-        your answer to the coding challenge.
+4. All prompt and responses I received from Claude are included above under the Exercise section. I believe that the AI did well with creating exactly what I said, but that is inherintly the issue. It didn't fill in the blanks to create an overall better product, or in this case, calculator. It created a functional basic calculator that can handle four basic functions. The AI was not able to go beyond this scope on its own. It had a few faults with creating the UI. With the first prompt it felt cluttered and almost oversimplified. This is a major fault of all models right now in my opinion. While AI can replicate currently existing web development practices, it struggles to innovate or even be critical of its own design without outside input. I was able to see what it created and immediately see what was wrong with it. I changed my approach by trying to be as specific as possible with what exactly I wanted in the areas that it mattered the most, and more vague in areas that weren't as important or that I didnt exactly know what I wanted yet (e.g. animations).
